@@ -55,6 +55,20 @@ export default function CustomDropdown({placeholder, itemlist, onPress}) {
             borderWidth: 2,
             borderRadius: 10,
           }}
+          dropdownStyle={{
+            width: '80%',
+            backgroundColor: '#fff',
+            borderColor: '#fca15a',
+            borderWidth: 2,
+            borderRadius: 19,
+            alignSelf: 'center',
+          }}
+          rowTextStyle={{
+            fontSize: 15,
+            fontWeight: '400',
+            padding: 2,
+          }}
+
         />
       </View>
     </View>

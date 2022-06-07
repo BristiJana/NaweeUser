@@ -4,8 +4,8 @@ import React from 'react';
 export default function SwitchTab(props) {
   return (
     <View style={styles.container}>
-      <HeaderButton text='Booth' btnColor="white" textColor="black" activeTab={props.activeTab} setactiveTab={props.setactiveTab} left={true} />
-      <HeaderButton text='Agent' btnColor="#fa892e" textColor="white" activeTab={props.activeTab} setactiveTab={props.setactiveTab} left={false}/>
+      <HeaderButton text='Pickup' btnColor="white" textColor="black" activeTab={props.activeTab} setactiveTab={props.setactiveTab} left={true} />
+      <HeaderButton text='Drop-off' btnColor="#fa892e" textColor="white" activeTab={props.activeTab} setactiveTab={props.setactiveTab} left={false}/>
     </View>
   );
 }
@@ -16,21 +16,22 @@ const HeaderButton = props => (
       style={{
         backgroundColor: props.activeTab === props.text ? '#fa892e' : 'white',
         paddingVertical: 10,
-        width:120,
+        width:160,
         paddingHorizontal: 25,
-        borderTopLeftRadius: props.left ? 30 : 0,
-        borderBottomLeftRadius: props.left ? 30 : 0,
-        borderTopRightRadius: props.left ? 0 : 30,
-        borderBottomRightRadius: props.left ? 0 : 30,
+        borderTopLeftRadius: props.left ? 15 : 0,
+        borderBottomLeftRadius: props.left ? 15 : 0,
+        borderTopRightRadius: props.left ? 0 : 15,
+        borderBottomRightRadius: props.left ? 0 : 15,
         borderWidth:  1,
-        borderColor : 'grey'
+        borderColor : '#fa892e'
       }}
       onPress={() => props.setactiveTab(props.text)}>
       <Text
         style={{
-          color: props.activeTab === props.text ? 'white' : '#817c7c',
+          color: props.activeTab === props.text ? 'white' : '#fa892e',
           fontSize: 20,
           fontWeight: '700',
+          alignSelf:'center'
         }}>
         {props.text}
       </Text>

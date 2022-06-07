@@ -5,7 +5,7 @@ import CustomTextInput from '../Components/CustomTextInput';
 import CustomText from '../Components/CustomText';
 import CustomDropdown from '../Components/CustomDropdown';
 import CustomButton from '../Components/CustomButton';
-import {Auth} from '../api/Service';
+import {Auth} from '../API/Service';
 
 export default function SignUp() {
   const [details, setdetails] = useState({
@@ -183,9 +183,7 @@ export default function SignUp() {
       <CustomDropdown
         placeholder="HOW DID YOU HEAR ABOUT US"
         itemlist={['Facebook', 'Youtube']}
-        inputicon="square-outline"
         onPress={item => handleInputSignup('hearFrom', item)}
-        iconcolor="#fff"
       />
       <CustomButton
         name="SIGN UP"
