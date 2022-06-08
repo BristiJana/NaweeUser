@@ -133,6 +133,7 @@ const SignIn = () => {
           name="Log in"
           bgcolor="#fa8832"
           width={220}
+          fontcolor="white"
           onPress={() => submitInputHandler()}
         />
         <View styles={styles.footerLogin}>

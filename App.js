@@ -1,10 +1,10 @@
 import {View} from 'react-native';
 import React, {useState} from 'react';
-import SendParcel from './src/Screens/SendParcel';
+import SignUp from './src/Screens/SignUp'
 const App = () => {
   return (
     <View >
-      <SendParcel />
+      <SignUp />
     </View>
   );
 };

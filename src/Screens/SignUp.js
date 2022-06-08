@@ -189,6 +189,7 @@ export default function SignUp() {
         name="SIGN UP"
         bgcolor="#fa8832"
         width={230}
+        fontcolor="white"
         onPress={test => handleSubmit()}
       />
       <FooterLogin footertext="Already have an account" footerbtntext="login" />

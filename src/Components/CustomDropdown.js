@@ -26,9 +26,7 @@ export default function CustomDropdown({placeholder, itemlist, onPress}) {
             return selectedItem;
           }}
           defaultButtonText="Select"
-          rowTextForSelection={(item, index) => {
-            return item;
-          }}
+          
           renderDropdownIcon={() => (
             <Icon
               name="caret-down"
@@ -67,6 +65,12 @@ export default function CustomDropdown({placeholder, itemlist, onPress}) {
             fontSize: 15,
             fontWeight: '400',
             padding: 2,
+          }}
+          rowStyle={{
+            borderRadius: 10,
+          }}
+          selectedRowStyle={{
+            backgroundColor: '#fca15a',
           }}
 
         />

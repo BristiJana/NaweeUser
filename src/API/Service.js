@@ -51,4 +51,8 @@ export const Auth = {
     requests.post(`${URLS.SIGNUP}`, data, {
       'Access-Control-Allow-Origin': '*',
     }),
+  signin: data =>
+    requests.post(`${URLS.SIGNIN}`, data, {
+      'Access-Control-Allow-Origin': '*',
+    }),
 };

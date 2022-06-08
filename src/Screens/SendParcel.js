@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     borderWidth: 1,
     borderRadius: 15,
-    elevation: 10,
+    elevation: 5,
     backgroundColor: 'white',
     padding: 10,
     marginTop: 10,
