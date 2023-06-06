@@ -1,11 +1,34 @@
-import {View, Text,TouchableOpacity,StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import React from 'react';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 
-export default function SwitchTab(props) {
+export default function SwitchTab({
+  activeTab,
+  setactiveTab,
+  leftoption,
+  rightoption,
+}) {
   return (
     <View style={styles.container}>
-      <HeaderButton text='Pickup' btnColor="white" textColor="black" activeTab={props.activeTab} setactiveTab={props.setactiveTab} left={true} />
-      <HeaderButton text='Drop-off' btnColor="#fa892e" textColor="white" activeTab={props.activeTab} setactiveTab={props.setactiveTab} left={false}/>
+      <HeaderButton
+        text={leftoption}
+        btnColor="white"
+        textColor="black"
+        activeTab={activeTab}
+        setactiveTab={setactiveTab}
+        left={true}
+      />
+      <HeaderButton
+        text={rightoption}
+        btnColor="#fa892e"
+        textColor="white"
+        activeTab={activeTab}
+        setactiveTab={setactiveTab}
+        left={false}
+      />
     </View>
   );
 }
@@ -15,23 +38,26 @@ const HeaderButton = props => (
     <TouchableOpacity
       style={{
         backgroundColor: props.activeTab === props.text ? '#fa892e' : 'white',
-        paddingVertical: 10,
-        width:160,
-        paddingHorizontal: 25,
+        paddingVertical: hp('2%'),
+        width: '100%',
+        paddingHorizontal: wp('9%'),
         borderTopLeftRadius: props.left ? 15 : 0,
         borderBottomLeftRadius: props.left ? 15 : 0,
         borderTopRightRadius: props.left ? 0 : 15,
         borderBottomRightRadius: props.left ? 0 : 15,
-        borderWidth:  1,
-        borderColor : '#fa892e'
+        borderWidth: 1,
+        borderColor: '#fa892e',
       }}
-      onPress={() => props.setactiveTab(props.text)}>
+      onPress={() => {
+        props.setactiveTab(props.text);
+      }}>
       <Text
         style={{
           color: props.activeTab === props.text ? 'white' : '#fa892e',
-          fontSize: 20,
+          fontSize: wp('3.7%'),
           fontWeight: '700',
-          alignSelf:'center'
+          alignSelf: 'center',
+          fontFamily: 'Syne-Regular',
         }}>
         {props.text}
       </Text>
@@ -40,11 +66,10 @@ const HeaderButton = props => (
 );
 
 const styles = StyleSheet.create({
-    container: {
-      paddingTop: 20,
-      alignSelf: 'center',
-      justifyContent: "center",
-      flexDirection: "row",
-    },
-  });
-  
+  container: {
+    marginTop: '2%',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
+});

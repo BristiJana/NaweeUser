@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, SafeAreaView} from 'react-native';
 import CustomTextInput from '../Components/CustomTextInput';
 import CustomButton from '../Components/CustomButton';
 import {useState, useEffect} from 'react';
@@ -7,7 +7,7 @@ import {useState, useEffect} from 'react';
 
 import FooterLogin from '../Components/FooterLogin';
 
-const SignIn = () => {
+const SignIn = ({navigation}) => {
   const [SigninForm, setSigninForm] = useState({
     email: {text: '', error: '', type: 'TEXT'},
     password: {text: '', error: '', type: 'TEXT'},
@@ -55,6 +55,7 @@ const SignIn = () => {
   };
 
   const submitInputHandler = async () => {
+    navigation.navigate('MyDrawer', {name: 'MyDrawer'});
     try {
       let error = '';
       let x = {...SigninForm};
@@ -103,47 +104,53 @@ const SignIn = () => {
 
   return (
     <>
-      <View style={styles.signInContainer}>
-        <View>
-          <CustomTextInput
-            lable="Email Id"
-            bgcolor="white"
-            visible={true}
-            onChange={text => signinInputHandler('email', text)}
-            value={SigninForm.email.text}
+      <SafeAreaView>
+        <View style={styles.signInContainer}>
+          <View>
+            <CustomTextInput
+              lable="Email Id"
+              bgcolor="white"
+              visible={true}
+              onChange={text => signinInputHandler('email', text)}
+              value={SigninForm.email.text}
+            />
+            {SigninForm.email.error ? (
+              <Text style={styles.error}>{SigninForm.email.error}</Text>
+            ) : null}
+            <CustomTextInput
+              lable="Password"
+              bgcolor="white"
+              visible={false}
+              onChange={passText => signinInputHandler('password', passText)}
+              value={SigninForm.password.text}
+            />
+            {SigninForm.password.error ? (
+              <Text style={styles.error}>{SigninForm.password.error}</Text>
+            ) : null}
+          </View>
+          <View style={styles.forgotPassContainer}>
+            <Text
+              style={styles.forgotPassContainerText}
+              onPress={() => navigation.navigate('Fp', {name: 'Fp'})}>
+              Forgot Password?
+            </Text>
+          </View>
+          <CustomButton
+            name="Log in"
+            bgcolor="#fa8832"
+            width={220}
+            onPress={() => submitInputHandler()}
           />
-          {SigninForm.email.error ? (
-            <Text style={styles.error}>{SigninForm.email.error}</Text>
-          ) : null}
-          <CustomTextInput
-            lable="Password"
-            bgcolor="white"
-            visible={false}
-            onChange={passText => signinInputHandler('password', passText)}
-            value={SigninForm.password.text}
-          />
-          {SigninForm.password.error ? (
-            <Text style={styles.error}>{SigninForm.password.error}</Text>
-          ) : null}
+          <View styles={styles.footerLogin}>
+            <FooterLogin
+              footertext="Don't have an account"
+              footerbtntext="Sign Up"
+              nav={navigation}
+            />
+          </View>
+          {/* <Logo /> */}
         </View>
-        <View style={styles.forgotPassContainer}>
-          <Text style={styles.forgotPassContainerText}>Forgot Password?</Text>
-        </View>
-        <CustomButton
-          name="Log in"
-          bgcolor="#fa8832"
-          width={220}
-          fontcolor="white"
-          onPress={() => submitInputHandler()}
-        />
-        <View styles={styles.footerLogin}>
-          <FooterLogin
-            footertext="Don't have an account"
-            footerbtntext="Sign Up"
-          />
-        </View>
-        {/* <Logo /> */}
-      </View>
+      </SafeAreaView>
     </>
   );
 };

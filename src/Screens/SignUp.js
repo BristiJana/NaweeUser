@@ -1,13 +1,23 @@
 import React, {useState, useEffect} from 'react';
-import {ScrollView, Text, StyleSheet} from 'react-native';
+import {
+  ScrollView,
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import FooterLogin from '../Components/FooterLogin';
 import CustomTextInput from '../Components/CustomTextInput';
 import CustomText from '../Components/CustomText';
 import CustomDropdown from '../Components/CustomDropdown';
 import CustomButton from '../Components/CustomButton';
 import {Auth} from '../API/Service';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
-export default function SignUp() {
+export default function SignUp({navigation}) {
   const [details, setdetails] = useState({
     email: {text: '', error: ''},
     password: {text: '', error: ''},
@@ -52,6 +62,7 @@ export default function SignUp() {
   }, [details]);
 
   const handleSubmit = async () => {
+    navigation.navigate('MyDrawer', {name: 'MyDrawer'});
     try {
       let error = '';
       let x = {...details};
@@ -101,7 +112,7 @@ export default function SignUp() {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={{height: 1235}}>
+      contentContainerStyle={{height: 'auto'}}>
       <CustomText text="PERSONAL INFORMATION" size={23} color="#ffffff" />
       <CustomTextInput
         lable="FIRST NAME"
@@ -166,11 +177,13 @@ export default function SignUp() {
         <Text style={styles.error}>{details.phoneNumber.error}</Text>
       ) : null}
       <CustomDropdown
-        placeholder="GENDER"
+        title="GENDER"
         itemlist={['male', 'female', 'non-binary']}
         inputicon="transgender"
         onPress={item => handleInputSignup('sex', item)}
         iconcolor="#fff"
+        placeholder="select your gender"
+        buttonWidth={wp('80%')}
       />
       <CustomTextInput
         lable="ADDRESS"
@@ -181,18 +194,33 @@ export default function SignUp() {
         toggleicon={true}
       />
       <CustomDropdown
-        placeholder="HOW DID YOU HEAR ABOUT US"
+        title="HOW DID YOU HEAR ABOUT US"
         itemlist={['Facebook', 'Youtube']}
         onPress={item => handleInputSignup('hearFrom', item)}
+        buttonWidth={wp('80%')}
+        placeholder="Select"
       />
       <CustomButton
         name="SIGN UP"
         bgcolor="#fa8832"
-        width={230}
+        width={wp('50%')}
+        height={hp('6%')}
         fontcolor="white"
         onPress={test => handleSubmit()}
       />
-      <FooterLogin footertext="Already have an account" footerbtntext="login" />
+      <View
+        style={{
+          flex: 1,
+          alignSelf: 'center',
+          marginBottom: '4%',
+          flexDirection: 'row',
+        }}>
+        <Text style={{fontSize: 15}}>Already have an account </Text>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Login', {name: 'Login'})}>
+          <Text style={{color: '#FA8832'}}>SignIn</Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 }
@@ -200,9 +228,9 @@ export default function SignUp() {
 const styles = StyleSheet.create({
   error: {
     color: 'red',
-    marginHorizontal: 50,
+    marginHorizontal: wp('10%'),
     fontWeight: '700',
-    fontSize: 12,
-    paddingTop: 40,
+    fontSize: wp('2.5%'),
+    paddingTop: hp('2%'),
   },
 });

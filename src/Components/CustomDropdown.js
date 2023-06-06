@@ -1,22 +1,26 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import SelectDropdown from 'react-native-select-dropdown';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Entypo';
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
-export default function CustomDropdown({placeholder, itemlist, onPress}) {
+
+export default function CustomDropdown({title, itemlist, onPress, search,searchplaceholder,buttonWidth,placeholder}) {
   return (
-    <View style={{height: 60, marginBottom: 25, marginTop: 10}}>
+    <View style={{flex:1}}>
+      {title ? (
       <Text
         style={{
-          fontSize: 15,
+          fontSize: wp('4%'),
           fontWeight: '500',
-          paddingLeft: 50,
-          paddingTop: 20,
-          marginTop: 10,
+          paddingLeft: wp('10%'),
+          marginTop: hp('1.5%'),
+          fontFamily:'Syne-Regular'
         }}>
-        {placeholder}
+        {title}
       </Text>
-      <View style={{flexDirection: 'row'}}>
+      ) : null}
+      <View style={{flexDirection: 'row',marginTop:0 }}>
         <SelectDropdown
           data={itemlist}
           onSelect={(selectedItem, index) => {
@@ -25,33 +29,33 @@ export default function CustomDropdown({placeholder, itemlist, onPress}) {
           buttonTextAfterSelection={(selectedItem, index) => {
             return selectedItem;
           }}
-          defaultButtonText="Select"
+          defaultButtonText={placeholder}
           
           renderDropdownIcon={() => (
             <Icon
-              name="caret-down"
+              name="chevron-thin-down"
               type="FontAwesome"
               size={20}
               color="black"
-              style={{paddingLeft: 15, paddingRight: 15, fontWeight: '700'}}
+              style={{paddingHorizontal:'2%', fontWeight: '700'}}
             />
           )}
           dropdownIconPosition="right"
           buttonTextStyle={{
-            fontSize: 13,
-            borderRadius: 30,
+            fontSize: 16,
             color: 'grey',
-            fontWeight: '700',
+            fontFamily:'Syne-Regular',
+            textAlign:'left',
+            fontWeight: '600',
           }}
           buttonStyle={{
-            padding: 10,
-            marginHorizontal: 45,
-            marginVertical: 20,
-            width: '80%',
+            marginHorizontal: '10%',
+            marginTop:hp('2.5%'),
+            width: buttonWidth,
             backgroundColor: '#fff',
             borderColor: '#fca15a',
             borderWidth: 2,
-            borderRadius: 10,
+            borderRadius: 15,
           }}
           dropdownStyle={{
             width: '80%',
@@ -59,20 +63,99 @@ export default function CustomDropdown({placeholder, itemlist, onPress}) {
             borderColor: '#fca15a',
             borderWidth: 2,
             borderRadius: 19,
-            alignSelf: 'center',
+            alignSelf:'center',
+            marginTop: hp('3%'),
           }}
           rowTextStyle={{
             fontSize: 15,
             fontWeight: '400',
-            padding: 2,
-          }}
-          rowStyle={{
-            borderRadius: 10,
+            textAlign:'left',
+            fontFamily:'Syne-Regular',
           }}
           selectedRowStyle={{
-            backgroundColor: '#fca15a',
+            backgroundColor: '#fee7d6',
           }}
-
+          rowStyle={{
+            borderBottomColor:'transparent',
+            borderBottomWidth: 1,
+          }}
+          disableAutoScroll={true}
+          search={search}
+          searchPlaceHolder={searchplaceholder}
+          searchTextStyle={{
+            fontSize: 15,
+            fontWeight: '400',
+            padding: '2%',
+            fontFamily:'Syne-Regular',
+          }}
+          
+        />
+        <SelectDropdown
+          data={itemlist}
+          onSelect={(selectedItem, index) => {
+            onPress(selectedItem);
+          }}
+          buttonTextAfterSelection={(selectedItem, index) => {
+            return selectedItem;
+          }}
+          defaultButtonText={placeholder}
+          
+          renderDropdownIcon={() => (
+            <Icon
+              name="chevron-thin-down"
+              type="FontAwesome"
+              size={20}
+              color="black"
+              style={{paddingHorizontal:wp('2%'), fontWeight: '700'}}
+            />
+          )}
+          dropdownIconPosition="right"
+          buttonTextStyle={{
+            fontSize: 16,
+            borderRadius: 40,
+            color: 'grey',
+            fontWeight: '600',
+          }}
+          buttonStyle={{
+            marginHorizontal: '10%',
+            marginVertical: '5%',
+            width: buttonWidth,
+            backgroundColor: '#fff',
+            borderColor: '#fca15a',
+            borderWidth: 2,
+            borderRadius: 8,
+          }}
+          dropdownStyle={{
+            width: '80%',
+            backgroundColor: '#fff',
+            borderColor: '#fca15a',
+            borderWidth: 2,
+            borderRadius: 19,
+            alignSelf:'center',
+            marginTop: '3%',
+          }}
+          rowTextStyle={{
+            fontSize: 15,
+            fontWeight: '400',
+            textAlign:'left',
+          }}
+          selectedRowStyle={{
+            backgroundColor: '#fee7d6',
+          }}
+          rowStyle={{
+            borderBottomColor:'transparent',
+            borderBottomWidth: 1,
+          }}
+          disableAutoScroll={true}
+          search={search}
+          searchPlaceHolder={searchplaceholder}
+          searchTextStyle={{
+            fontSize: 15,
+            fontWeight: '400',
+            padding: '2%',
+          }}
+          
+          
         />
       </View>
     </View>

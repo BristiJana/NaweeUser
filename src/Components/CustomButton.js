@@ -1,9 +1,11 @@
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import React from 'react';
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 export default function CustomButton({
   name,
   bgcolor,
+  height,
   fontcolor,
   width,
   onPress,
@@ -11,12 +13,14 @@ export default function CustomButton({
   return (
     <TouchableOpacity
       style={{
+        flex:1,
+        marginHorizontal:wp('2%'),
         backgroundColor: bgcolor,
-        height: 42,
+        height: height,
         alignSelf: 'center',
         borderRadius: 12,
-        marginBottom: 10,
-        marginTop: 60,
+        marginBottom: hp('3%'),
+        marginTop: hp('4%'),
         width: width,
         flexDirection: 'row',
         justifyContent: 'center',
@@ -31,11 +35,11 @@ export default function CustomButton({
         <Text
           style={{
             color: fontcolor,
-            fontSize: 16,
+            fontSize: wp('4.6%'),
             alignSelf: 'center',
-            paddingVertical: 10,
+            paddingVertical: hp('1%'),
             fontWeight: '600',
-            fontFamily: "'Syne', sans-serif",
+            fontFamily: 'Syne-Regular',
           }}>
           {name}
         </Text>

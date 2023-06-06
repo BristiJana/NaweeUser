@@ -1,13 +1,16 @@
 import {View, Text, StyleSheet, TextInput} from 'react-native';
 import React, {useState} from 'react';
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
-export const CustomTextInput = ({lable, onChange, bgcolor, visible}) => (
+export const CustomTextInput = ({lable,placeholder, onChange, bgcolor, visible}) => (
   <View style={styles.maincontainer}>
-    <Text style={{fontSize: 14, fontWeight: '600'}}>{lable}</Text>
+    {lable ?
+    <Text style={{fontSize: wp('4%'), fontWeight: '600',fontFamily:'Syne-Regular',}}>{lable}</Text>
+    : null}
     <View style={[styles.container, {backgroundColor: bgcolor}]}>
       <TextInput
         style={styles.textinputStyleLogin}
-        placeholder={lable}
+        placeholder={placeholder}
         secureTextEntry={!visible}
         onChangeText={onChange}
       />
@@ -17,10 +20,10 @@ export const CustomTextInput = ({lable, onChange, bgcolor, visible}) => (
 
 const styles = StyleSheet.create({
   container: {
-    height: 50,
+    paddingVertical:hp('1%'),
     width: '100%',
     alignSelf: 'center',
-    marginTop: 10,
+    marginTop:'2%',
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white',
@@ -29,10 +32,10 @@ const styles = StyleSheet.create({
     borderColor: '#FA8832',
   },
   maincontainer: {
-    height: 60,
+    
     width: '80%',
     alignSelf: 'center',
-    marginTop: 50,
+    marginTop: hp('2%'),
   },
   textinputStyleLogin: {
     color: 'black',

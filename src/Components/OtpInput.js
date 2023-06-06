@@ -1,4 +1,4 @@
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import OTPTextInput from 'react-native-otp-textinput';
 
@@ -16,23 +16,18 @@ export default function OtpInput() {
 }
 
 const styles = StyleSheet.create({
-  textinput: {
-    width: 70,
-    height: 70,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#fcad72',
-  },
+
   roundedTextInput: {
+    flex:1,
     borderRadius: 10,
     borderWidth: 2,
     alignSelf:'center'
   },
   container: {
+    marginHorizontal:'5%',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: '2%',
   },
 });

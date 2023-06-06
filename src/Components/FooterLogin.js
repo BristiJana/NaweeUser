@@ -1,11 +1,13 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
-const FooterLogin = ({footertext, footerbtntext, }) => {
+const FooterLogin = ({footertext, footerbtntext, nav}) => {
   return (
     <View style={styles.footer}>
       <Text style={styles.footerText}>{footertext} ?</Text>
-      <TouchableOpacity style={styles.footerBtn}>
+      <TouchableOpacity
+        style={styles.footerBtn}
+        onPress={() => nav.navigate('Signup', {name: 'Signup'})}>
         <Text style={styles.footerBtnText}>{footerbtntext}</Text>
       </TouchableOpacity>
     </View>
@@ -17,7 +19,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignSelf: 'center',
-    marginTop: 10
+    marginTop: 10,
   },
   footerText: {
     fontWeight: '400',
@@ -32,7 +34,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: 15,
     textDecorationLine: 'underline',
-    color: "#FA8832"
+    color: '#FA8832',
   },
 });
 export default FooterLogin;
